@@ -1,0 +1,1 @@
+**Verilog** provides basic (and likely incomplete) syntax highlighting for the **Verilog** language (.v or .V files).

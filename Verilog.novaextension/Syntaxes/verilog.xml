@@ -1,0 +1,219 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<syntax name="verilog">
+    <meta>
+        <name>Verilog</name>
+        <type>compiled</type>
+        <preferred-file-extension>v</preferred-file-extension>
+    </meta>
+    
+    <detectors>
+        <extension priority="1.0">v</extension>
+    </detectors>
+    
+    <comments>
+        <multiline>
+            <starts-with>
+                <expression>/\*</expression>
+            </starts-with>
+            <ends-with>
+                <expression>\*/</expression>
+            </ends-with>
+        </multiline>
+        <single>
+            <expression>//</expression>
+        </single>
+    </comments>
+    
+    <brackets>
+        <pair open="{" close="}" />
+        <pair open="[" close="]" />
+        <pair open="(" close=")" />
+    </brackets>
+    
+    <surrounding-pairs>
+        <pair open="{" close="}" />
+        <pair open="[" close="]" />
+        <pair open="(" close=")" />
+        <pair open="&apos;" close="&apos;" />
+        <pair open="&quot;" close="&quot;" />
+    </surrounding-pairs>
+    
+    <symbols redefinition="within-construct">
+        <local scope="within-construct" />
+        <documentation mode="before" match-multiple="comment" />
+        <documentation mode="after" match-multiple="comment" />
+    </symbols>
+    
+    <scopes>        
+        <include syntax="self" collection="values" />
+        <include syntax="self" collection="comments" />
+        <include syntax="self" collection="keywords" />
+    </scopes>
+    
+    <collections>
+        <collection name="comments">
+            <scope name="verilog.comment.single" spell-check="false">
+                <expression>///?(.*)$</expression>
+            </scope>
+            <scope name="verilog.comment.block" spell-check="false">
+                <starts-with>
+                    <expression>/\*\*?</expression>
+                </starts-with>
+                <ends-with>
+                    <expression>\*/</expression>
+                </ends-with>
+            </scope>
+        </collection>
+        <collection name="values">
+            <scope name="verilog.value.number.hex">
+                <expression>(\b|')h[0-9a-fA-FxXzZ]+(\b|;)</expression>
+            </scope>
+            <scope name="verilog.value.number.boolean">
+                <expression>(\b|')b[0-1xXzZ]+(\b|;)</expression>
+            </scope>
+            <scope name="verilog.value.number.dec">
+                <expression>(\b|'d)[0-9xXzZ]+(\b|;)</expression>
+            </scope>
+            <scope name="objc.value.number">
+                <expression>(\b|')[0-9xXzZ]+(\b|;)</expression>
+            </scope>
+        </collection>
+        <collection name="keywords">
+            <scope name="verilog.keyword.module">
+                <strings case-insensitive="true">
+                    <string>module</string>
+                    <string>function</string>
+                    <string>primitive</string>
+                    <string>endmodule</string>
+                    <string>endfunction</string>
+                    <string>endprimitive</string>
+                </strings>
+            </scope>
+            <scope name="verilog.keyword.storage.type">
+                <strings case-insensitive="true">
+                    <string>wire</string>
+                    <string>tri</string>
+                    <string>tri[01]</string>
+                    <string>supply[01]</string>
+                    <string>wand</string>
+                    <string>triand</string>
+                    <string>wor</string>
+                    <string>trior</string>
+                    <string>trireg</string>
+                    <string>reg</string>
+                    <string>parameter</string>
+                    <string>integer</string>
+                </strings>
+            </scope>
+            <scope name="verilog.keyword.support.type">
+                <strings case-insensitive="true">
+                    <string>output</string>
+                    <string>input</string>
+                    <string>inout</string>
+                    <string>and</string>
+                    <string>nand</string>
+                    <string>nor</string>
+                    <string>or</string>
+                    <string>xor</string>
+                    <string>xnor</string>
+                    <string>buf</string>
+                    <string>not</string>
+                    <string>bufif[01]</string>
+                    <string>notif[01]</string>
+                    <string>r?[npc]mos</string>
+                    <string>tran</string>
+                    <string>r?tranif[01]</string>
+                    <string>pullup</string>
+                    <string>pulldown</string>
+                </strings>
+            </scope>
+            <scope name="verilog.keyword.other">
+                <strings case-insensitive="true">
+                    <string>begin</string>
+                    <string>end</string>
+                    <string>fork</string>
+                    <string>join</string>
+                </strings>
+            </scope>
+            <scope name="verilog.keyword.storage.modifier">
+                <strings case-insensitive="true">
+                    <string>signed</string>
+                    <string>unsigned</string>
+                    <string>small</string>
+                    <string>medium</string>
+                    <string>large</string>
+                    <string>supply[01]</string>
+                    <string>strong[01]</string>
+                    <string>pull[01]</string>
+                    <string>weak[01]</string>
+                    <string>highz[01]</string>
+                </strings>
+            </scope>
+            <scope name="verilog.keyword.control">
+                <strings case-insensitive="true">
+                    <string>forever</string>
+                    <string>repeat</string>
+                    <string>while</string>
+                    <string>for</string>
+                    <string>if</string>
+                    <string>else</string>
+                    <string>case</string>
+                    <string>casex</string>
+                    <string>casez</string>
+                    <string>default</string>
+                    <string>endcase</string>
+                    <string>initial</string>
+                    <string>always</string>
+                    <string>wait</string>
+                    <string>force</string>
+                    <string>release</string>
+                    <string>assign</string>
+                </strings>
+            </scope>
+            <scope name="verilog.keyword.construct">
+                <strings case-insensitive="true">
+                    <string>automatic</string>
+                    <string>cell</string>
+                    <string>config</string>
+                    <string>deassign</string>
+                    <string>defparam</string>
+                    <string>design</string>
+                    <string>disable</string>
+                    <string>edge</string>
+                    <string>endconfig</string>
+                    <string>endgenerate</string>
+                    <string>endspecify</string>
+                    <string>endtable</string>
+                    <string>endtask</string>
+                    <string>event</string>
+                    <string>generate</string>
+                    <string>genvar</string>
+                    <string>ifnone</string>
+                    <string>incdir</string>
+                    <string>include</string>
+                    <string>instance</string>
+                    <string>liblist</string>
+                    <string>library</string>
+                    <string>localparam</string>
+                    <string>macromodule</string>
+                    <string>negedge</string>
+                    <string>noshowcancelled</string>
+                    <string>posedge</string>
+                    <string>pulsestyle_onevent</string>
+                    <string>pulsestyle_ondetect</string>
+                    <string>real</string>
+                    <string>realtime</string>
+                    <string>scalared</string>
+                    <string>showcancelled</string>
+                    <string>specify</string>
+                    <string>specparam</string>
+                    <string>table</string>
+                    <string>task</string>
+                    <string>time</string>
+                    <string>use</string>
+                    <string>vectored</string>
+                </strings>
+            </scope>
+         </collection>
+    </collections>
+</syntax>
