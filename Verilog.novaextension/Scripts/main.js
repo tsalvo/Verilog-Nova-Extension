@@ -121,7 +121,7 @@ class IssuesProvider {
                     // -- Status 127 most likely means `verilator` is not installed or can't be found in $PATH.
                     let issue = new Issue();
                     issue.message = "Verilator not found; see Verilog Nova extension documentation";
-                    issue.severity = IssueSeverity.Error;
+                    issue.severity = IssueSeverity.Warning;
                     issue.line = 1;
                     issues.push(issue);
                     resolve(issues);
