@@ -14,6 +14,10 @@ class IssuesProvider {
     }
 
     provideIssues(editor) {
+        if (nova.config.get("com.tomsalvo.verilog.enable-linting") == false) {
+            return [];            
+        }
+        
         let enableDebugLog = nova.config.get("com.tomsalvo.verilog.enable-debug-log");
 
         // -- provideIssues() seems to sometimes be called before a document is ready to read. Bail out early if so.

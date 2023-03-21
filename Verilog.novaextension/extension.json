@@ -25,6 +25,13 @@
             "type": "section",
             "children": [
                 {
+                    "key": "com.tomsalvo.verilog.enable-linting",
+                    "title": "Enable linting with verilator.",
+                    "description": "Enable linting if you have verilator installed on your machine.",
+                    "type": "boolean",
+                    "default": false
+                },
+                {
                     "key": "com.tomsalvo.verilog.enable-debug-log",
                     "title": "Enable debug log.",
                     "description": "Enable logging of any debugging info to the extension console.",
