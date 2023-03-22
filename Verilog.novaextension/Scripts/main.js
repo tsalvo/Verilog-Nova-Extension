@@ -27,51 +27,57 @@ class IssuesProvider {
         }
 
         return new Promise(function(resolve, reject) {
-            let issues = [];
+            let documentPathComponents = editor.document.path.split("/");
 
+            let tmpFilename = nova.fs.tempdir + '/' + documentPathComponents.slice(-1);
+
+            const fullRange = new Range(0, docLen);
+            try {
+                let file = nova.fs.open(tmpFilename, "w");
+                file.write(editor.document.getTextInRange(fullRange));
+                file.close();
+            }
+            catch (e) {
+                console.error(e);
+                reject(e);
+            }
+ 
             let processOptions =  {
                 args: ['verilator', '--lint-only', '-Wall']
             };
-
-            if (editor.document.isRemote || typeof editor.document.path != "string") {
-                // -- We only deal with files that are local and has been saved.
-                return;
-            }
-
-            const fileParentFolder = editor.document.path.split("/").slice(0, -1).join("/");
-
+            
+            // -- Add the file's folder to the include path.
+            const fileParentFolder = documentPathComponents.slice(0, -1).join("/");                        
+            processOptions.args.push('-I' + fileParentFolder.replace(' ', '\ '));
+            
             let runFromFileFolder = nova.workspace.config.get("com.tomsalvo.verilog.run-from-file-folder");
             if (runFromFileFolder == false) {
                 // -- Set cwd to the project folder.
                 processOptions.cwd = nova.workspace.path;
-
-                // -- Add the file's folder to the include path.
-                processOptions.args.push('-I' + fileParentFolder.replace(' ', '\ '));
             }
             else {
                 // -- Set cwd to parent directory of the file.
                 processOptions.cwd = fileParentFolder;                
-
-                // -- Add the file's folder to the include path.
-                processOptions.args.push('-I.');
             }
-
+            
             let additionalIncludeFiles = nova.workspace.config.get("com.tomsalvo.verilog.additional-include-paths");
             if (additionalIncludeFiles != null) {
                 additionalIncludeFiles.forEach(async (path) => {
                     processOptions.args.push('-I' + path.replace(' ', '\ '));
                 });
             }
-
+            
             // -- Add the filename to the process options.
-            processOptions.args.push(editor.document.path);
-
+            processOptions.args.push(tmpFilename);
+            
             if (enableDebugLog == true) {
                 console.log("Parsing: '" + editor.document.path + "'");
                 console.log("Command line:");
                 console.log(processOptions.args);
             }
-
+            
+            let issues = [];
+                        
             // -- Initialize process.
             const process = new Process("/usr/bin/env", processOptions);
 
@@ -120,6 +126,8 @@ class IssuesProvider {
             });
 
             process.onDidExit(function(exitStatus) {
+                nova.fs.remove(tmpFilename);
+ 
                 if (exitStatus == 127) {
                     // -- Status 127 most likely means `verilator` is not installed or can't be found in $PATH.
                     let issue = new Issue();

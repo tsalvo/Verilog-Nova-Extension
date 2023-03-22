@@ -15,6 +15,7 @@
     ],
     
     "entitlements": {
+        "filesystem": "readwrite",
         "process": true
     },
     
