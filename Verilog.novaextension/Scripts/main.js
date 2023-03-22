@@ -93,23 +93,22 @@ class IssuesProvider {
                     return;
                 }
 
-                let components = line.substring(8).split(":");
+                let components = line.split(":");
                 if (components.length < 4) {
                     return;
                 }
 
                 let issue = new Issue();
-                issue.code = components[0];
-                issue.message = components[3].substring(1);
                 issue.severity = IssueSeverity.Error;
-                issue.line = components[1];
-                issue.column = components[2];
+                issue.line = components[2];
+                issue.column = components[3];
+                issue.message = components.slice(4).join(":");  
 
                 // -- Verilator doesn't specify a separate end line
-                issue.endLine = components[1];
+                issue.endLine = issue.line;
 
                 // -- Nova seems to want endColumn to be the first "good" column rather than the last bad one.
-                issue.endColumn = Number(components[2]) + 1;
+                issue.endColumn = Number(issue.column) + 1;
 
                 issues.push(issue);
             });
