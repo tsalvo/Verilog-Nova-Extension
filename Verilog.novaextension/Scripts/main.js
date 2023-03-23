@@ -59,14 +59,14 @@ class IssuesProvider {
                 // -- Set cwd to parent directory of the file.
                 processOptions.cwd = fileParentFolder;                
             }
-            
+
             let additionalIncludeFiles = nova.workspace.config.get("com.tomsalvo.verilog.additional-include-paths");
             if (additionalIncludeFiles != null) {
                 additionalIncludeFiles.forEach(async (path) => {
                     processOptions.args.push('-I' + path.replace(' ', '\ '));
                 });
             }
-            
+
             // -- Add the filename to the process options.
             processOptions.args.push(tmpFilename);
             
@@ -75,9 +75,9 @@ class IssuesProvider {
                 console.log("Command line:");
                 console.log(processOptions.args);
             }
-            
+
             let issues = [];
-                        
+
             // -- Initialize process.
             const process = new Process("/usr/bin/env", processOptions);
 
@@ -116,13 +116,13 @@ class IssuesProvider {
                 issue.line = components[2];
                 issue.column = components[3];
                 issue.message = components.slice(4).join(":");  
-
+                
                 // -- Verilator doesn't specify a separate end line
                 issue.endLine = issue.line;
-
+                
                 // -- Nova seems to want endColumn to be the first "good" column rather than the last bad one.
                 issue.endColumn = Number(issue.column) + 1;
-
+                
                 issues.push(issue);
             });
 
