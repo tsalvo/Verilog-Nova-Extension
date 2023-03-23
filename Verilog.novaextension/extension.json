@@ -64,6 +64,20 @@
                     "allowFolders": true
                 }
             ]
+        },
+        {
+            "key": "com.tomsalvo.verilog.ignore.workspace.section",
+            "title": "Ignore list",
+            "type": "section",
+            "children": [
+                {
+                    "key": "com.tomsalvo.verilog.ignore-cannot-find-file-containing-module",
+                    "title": "Ignore 'cannot find file containing module'.",
+                    "description": "Can be incorrectly displayed when a file is not the top of the hierarchy.",
+                    "type": "boolean",
+                    "default": false
+                }
+            ]
         }
     ]
 }

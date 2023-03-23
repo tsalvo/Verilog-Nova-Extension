@@ -19,6 +19,7 @@ class IssuesProvider {
         }
         
         let enableDebugLog = nova.config.get("com.tomsalvo.verilog.enable-debug-log");
+        let ignoreCannotFindFileContainingModule = nova.workspace.config.get("com.tomsalvo.verilog.ignore-cannot-find-file-containing-module");
 
         // -- provideIssues() seems to sometimes be called before a document is ready to read. Bail out early if so.
         const docLen = editor.document.length;
@@ -85,6 +86,10 @@ class IssuesProvider {
             process.onStderr(function(line) {
                 if (enableDebugLog == true) {
                     console.log("   " + line);
+                }
+
+                if (ignoreCannotFindFileContainingModule && line.includes("Cannot find file containing module: ")) {
+                    return;
                 }
 
                 // -- Line may include spaces at front and back for formatting.
