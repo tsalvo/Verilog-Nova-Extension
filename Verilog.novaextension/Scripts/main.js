@@ -95,17 +95,24 @@ class IssuesProvider {
                     return;
                 }
 
-                if (!line.startsWith('%Error: ')) {
-                    return;
-                }
-
                 let components = line.split(":");
                 if (components.length < 4) {
                     return;
                 }
 
+                let severity = 0;
+                if (components[0].startsWith('%Error')) {
+                    severity = IssueSeverity.Error;
+                }
+                else if (line.startsWith('%Warning')) {
+                    severity = IssueSeverity.Warning;
+                }
+                else {
+                    return;
+                }
+
                 let issue = new Issue();
-                issue.severity = IssueSeverity.Error;
+                issue.severity = severity;
                 issue.line = components[2];
                 issue.column = components[3];
                 issue.message = components.slice(4).join(":");  
