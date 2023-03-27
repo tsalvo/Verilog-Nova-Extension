@@ -2,9 +2,82 @@
     "identifier": "com.tomsalvo.verilog",
     "name": "Verilog",
     "organization": "Tom Salvo",
-    "description": "Basic syntax highlighting for Verilog",
+    "description": "Basic syntax highlighting and linting for Verilog and System Verilog",
     "repository": "https://github.com/tsalvo/Verilog-Nova-Extension",
     "bugs": "https://github.com/tsalvo/Verilog-Nova-Extension/issues",
-    "version": "0.0.1",
-    "categories": ["languages"]
+    "version": "0.0.2",
+    "categories": ["languages", "issues"],
+
+    "main": "main.js",
+    
+    "activationEvents": [
+        "onLanguage:verilog"
+    ],
+    
+    "entitlements": {
+        "filesystem": "readwrite",
+        "process": true
+    },
+    
+    "config": [
+        {
+            "key": "com.tomsalvo.verilog.general.section",
+            "title": "General",
+            "type": "section",
+            "children": [
+                {
+                    "key": "com.tomsalvo.verilog.enable-linting",
+                    "title": "Enable linting with verilator.",
+                    "description": "Enable linting if you have verilator installed on your machine.",
+                    "type": "boolean",
+                    "default": false
+                },
+                {
+                    "key": "com.tomsalvo.verilog.enable-debug-log",
+                    "title": "Enable debug log.",
+                    "description": "Enable logging of any debugging info to the extension console.",
+                    "type": "boolean",
+                    "default": false
+                }
+            ]
+        }
+    ],
+    "config-workspace": [
+        {
+            "key": "com.tomsalvo.verilog.general.workspace.section",
+            "title": "General",
+            "type": "section",
+            "children": [
+                {
+                    "key": "com.tomsalvo.verilog.run-from-file-folder",
+                    "title": "Run verilator from the source file's folder.",
+                    "description": "By default verilator is run from the project folder.",
+                    "type": "boolean",
+                    "default": false
+                },
+                {
+                    "key": "com.tomsalvo.verilog.additional-include-paths",
+                    "title": "Include paths",
+                    "description": "You can add additional include paths for your project.",
+                    "type": "pathArray",
+                    "allowFiles": false,
+                    "allowFolders": true
+                }
+            ]
+        },
+        {
+            "key": "com.tomsalvo.verilog.ignore.workspace.section",
+            "title": "Ignore list",
+            "type": "section",
+            "children": [
+                {
+                    "key": "com.tomsalvo.verilog.ignore-cannot-find-file-containing-module",
+                    "title": "Ignore 'cannot find file containing module'.",
+                    "description": "Can be incorrectly displayed when a file is not the top of the hierarchy.",
+                    "type": "boolean",
+                    "default": false
+                }
+            ]
+        }
+    ]
 }
