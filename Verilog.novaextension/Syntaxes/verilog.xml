@@ -104,6 +104,7 @@
                     <string>reg</string>
                     <string>parameter</string>
                     <string>integer</string>
+                    <string>logic</string>
                 </strings>
             </scope>
             <scope name="verilog.keyword.support.type">
@@ -165,6 +166,8 @@
                     <string>endcase</string>
                     <string>initial</string>
                     <string>always</string>
+                    <string>always_comb</string>
+                    <string>always_ff</string>
                     <string>wait</string>
                     <string>force</string>
                     <string>release</string>
