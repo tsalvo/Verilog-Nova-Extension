@@ -128,7 +128,10 @@ class IssuesProvider {
                 // -- Nova seems to want endColumn to be the first "good" column rather than the last bad one.
                 issue.endColumn = Number(issue.column) + 1;
                 
-                issues.push(issue);
+                let fileURI = components[1].slice(1);
+                if (fileURI == tmpFilename) {
+                    issues.push(issue);
+                }
             });
 
             process.onStdout(function(line) {
