@@ -75,7 +75,7 @@
             <scope name="verilog.value.number.dec">
                 <expression>(\b|'d)[0-9xXzZ]+(\b|;)</expression>
             </scope>
-            <scope name="objc.value.number">
+            <scope name="verilog.value.number">
                 <expression>(\b|')[0-9xXzZ]+(\b|;)</expression>
             </scope>
         </collection>
