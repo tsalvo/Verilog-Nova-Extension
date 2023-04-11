@@ -67,16 +67,34 @@
         </collection>
         <collection name="values">
             <scope name="verilog.value.number.hex">
-                <expression>(\b|')h[0-9a-fA-FxXzZ]+(\b|;)</expression>
+                <expression>\bh[0-9a-fA-F_]+(\b|;)</expression>
             </scope>
             <scope name="verilog.value.number.boolean">
-                <expression>(\b|')b[0-1xXzZ]+(\b|;)</expression>
+                <expression>\bb[0-1_]+(\b|;)</expression>
+            </scope>
+            <scope name="verilog.value.number.octal">
+                <expression>\bo[0-8_]+(\b|;)</expression>
             </scope>
             <scope name="verilog.value.number.dec">
-                <expression>(\b|'d)[0-9xXzZ]+(\b|;)</expression>
+                <expression>\bd[0-9_]+(\b|;)</expression>
             </scope>
-            <scope name="objc.value.number">
-                <expression>(\b|')[0-9xXzZ]+(\b|;)</expression>
+            <scope name="verilog.value.number.default">
+                <expression>\b[0-9_]+(\b|;)</expression>
+            </scope>
+            <scope name="verilog.value.number.base.hex">
+                <expression>'h[0-9a-fA-FxXzZ_]+(\b|;)</expression>
+            </scope>
+            <scope name="verilog.value.number.base.boolean">
+                <expression>'b[0-1xXzZ_]+(\b|;)</expression>
+            </scope>
+            <scope name="verilog.value.number.base.dec">
+                <expression>'d[0-9xXzZ_]+(\b|;)</expression>
+            </scope>
+            <scope name="verilog.value.number.base.octal">
+                <expression>'o[0-9xXzZ_]+(\b|;)</expression>
+            </scope>
+            <scope name="verilog.value.number.base.default">
+                <expression>'[0-9xXzZ_]+(\b|;)</expression>
             </scope>
         </collection>
         <collection name="keywords">
