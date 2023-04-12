@@ -1,3 +1,7 @@
+## Version 0.0.4
+
+- Fixed an [issue](https://github.com/tsalvo/Verilog-Nova-Extension/issues/2) where `x` and `z` variable names would highlight incorrectly as values
+
 ## Version 0.0.3
 
 - Added some missing symbol names (`logic`, `always_comb`, `always_ff`) (thanks [DidierMalenfant](https://github.com/DidierMalenfant)) 

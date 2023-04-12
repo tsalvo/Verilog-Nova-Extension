@@ -5,7 +5,7 @@
     "description": "Basic syntax highlighting and linting for Verilog and System Verilog",
     "repository": "https://github.com/tsalvo/Verilog-Nova-Extension",
     "bugs": "https://github.com/tsalvo/Verilog-Nova-Extension/issues",
-    "version": "0.0.3",
+    "version": "0.0.4",
     "categories": ["languages", "issues"],
 
     "main": "main.js",
