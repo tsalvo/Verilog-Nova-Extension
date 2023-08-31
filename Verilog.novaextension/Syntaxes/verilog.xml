@@ -9,6 +9,7 @@
     <detectors>
         <extension priority="1.0">v</extension>
         <extension priority="0.9">sv</extension>
+        <extension priority="0.8">svh</extension>
     </detectors>
     
     <comments>
