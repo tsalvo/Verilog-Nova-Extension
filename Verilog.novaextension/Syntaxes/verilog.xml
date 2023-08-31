@@ -158,6 +158,7 @@
                     <string>end</string>
                     <string>fork</string>
                     <string>join</string>
+                    <string>define</string>
                 </strings>
             </scope>
             <scope name="verilog.keyword.storage.modifier">
