@@ -122,8 +122,12 @@
                     <string>trireg</string>
                     <string>reg</string>
                     <string>parameter</string>
+                    <string>int</string>
                     <string>integer</string>
                     <string>logic</string>
+                    <string>var</string>
+                    <string>bit</string>
+                    <string>byte</string>
                 </strings>
             </scope>
             <scope name="verilog.keyword.support.type">
