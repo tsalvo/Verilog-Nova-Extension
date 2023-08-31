@@ -182,7 +182,9 @@
                     <string>while</string>
                     <string>for</string>
                     <string>if</string>
+                    <string>ifndef</string>
                     <string>else</string>
+                    <string>endif</string>
                     <string>case</string>
                     <string>casex</string>
                     <string>casez</string>
