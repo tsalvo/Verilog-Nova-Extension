@@ -1,3 +1,11 @@
+## Version 0.0.6
+
+- Added supporf for System Verilog header (.svh) files
+- Added support for missing System Verilog variable types
+- Added support for ifndef and endif
+- Added support for System Verilog macro keyword
+- Added clog2 keyword
+
 ## Version 0.0.4
 
 - Fixed an [issue](https://github.com/tsalvo/Verilog-Nova-Extension/issues/2) where `x` and `z` variable names would highlight incorrectly as values
