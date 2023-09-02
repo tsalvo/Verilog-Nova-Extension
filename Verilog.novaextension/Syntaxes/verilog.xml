@@ -9,6 +9,7 @@
     <detectors>
         <extension priority="1.0">v</extension>
         <extension priority="0.9">sv</extension>
+        <extension priority="0.8">svh</extension>
     </detectors>
     
     <comments>
@@ -121,8 +122,12 @@
                     <string>trireg</string>
                     <string>reg</string>
                     <string>parameter</string>
+                    <string>int</string>
                     <string>integer</string>
                     <string>logic</string>
+                    <string>var</string>
+                    <string>bit</string>
+                    <string>byte</string>
                 </strings>
             </scope>
             <scope name="verilog.keyword.support.type">
@@ -153,6 +158,8 @@
                     <string>end</string>
                     <string>fork</string>
                     <string>join</string>
+                    <string>define</string>
+                    <string>clog2</string>
                 </strings>
             </scope>
             <scope name="verilog.keyword.storage.modifier">
@@ -176,7 +183,9 @@
                     <string>while</string>
                     <string>for</string>
                     <string>if</string>
+                    <string>ifndef</string>
                     <string>else</string>
+                    <string>endif</string>
                     <string>case</string>
                     <string>casex</string>
                     <string>casez</string>
